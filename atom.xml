@@ -6,7 +6,7 @@
   <link href="https://yandouble.github.io/atom.xml" rel="self"/>
   
   <link href="https://yandouble.github.io/"/>
-  <updated>2024-04-04T10:24:41.365Z</updated>
+  <updated>2024-04-04T10:39:27.455Z</updated>
   <id>https://yandouble.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>testpost</title>
+    <link href="https://yandouble.github.io/uncategorized/testpost/"/>
+    <id>https://yandouble.github.io/uncategorized/testpost/</id>
+    <published>2024-04-03T16:00:00.000Z</published>
+    <updated>2024-04-04T10:39:27.455Z</updated>
+    
+    <content type="html"><![CDATA[<p>It is just a test.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;It is just a test.&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="Test" scheme="https://yandouble.github.io/tag/Test/"/>
+    
+  </entry>
   
   <entry>
     <title>My First Blog</title>

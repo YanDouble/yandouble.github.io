@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            Hello World
+            汇编及恶意代码常见技术
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -38,26 +38,34 @@
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">Hello World</h1>
+                <h1 class="header-subtitle">汇编及恶意代码常见技术</h1>
                 <div class="header-subinfo">
                     <p class="article-info-text">
                         <span>
-                            <i class="iconfont icon-time"></i> 发表时间：2023-03-29
+                            <i class="iconfont icon-time"></i> 发表时间：2023-10-15
                         </span>
                         
                             
-                                <span id="/uncategorized/Hello-World/" class="leancloud_visitors" data-flag-title="Hello World">
+                                <span id="/Study/汇编及恶意代码常见技术/" class="leancloud_visitors" data-flag-title="汇编及恶意代码常见技术">
                                     <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
                                 </span>
                             
                             
                                 <span>
-                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/uncategorized/Hello-World/"></span>
+                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/Study/汇编及恶意代码常见技术/"></span>
                                 </span>
                               
                         
                     </p>
                     
+                        
+                            <span class="category-color">Study</span>
+                        
+                    
+                    
+                        
+                            <span class="tag-color">汇编 | 恶意代码</span>
+                        
                     
                 </div>
             
@@ -71,19 +79,62 @@
         <div id="article">
             <div class="toc"></div>
             <div class="article-body">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h4 id="1-对抗反汇编"><a href="#1-对抗反汇编" class="headerlink" title="1.对抗反汇编"></a>1.对抗反汇编</h4><h5 id="分析下述代码实际在做什么？"><a href="#分析下述代码实际在做什么？" class="headerlink" title="分析下述代码实际在做什么？"></a>分析下述代码实际在做什么？</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">74 03    jz    short near ptr loc_4011C4+1</span><br><span class="line">75 01    jnz   short near ptr loc_4011C4+1</span><br><span class="line">loc_4011C4:</span><br><span class="line">E8 58 C3 90 90   call   near ptr 90D0D531h</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<ol>
+<li><p><code>jz short near ptr loc_4011C4+1</code>：条件跳转指令，如果Zero标志位（ZF）被设置（通常表示最近的操作结果为零），则跳转到<code>loc_4011C4</code>标签处执行下一条指令。</p>
+</li>
+<li><p><code>jnz short near ptr loc_4011C4+1</code>：条件跳转指令，如果Zero标志位未被设置（通常表示最近的操作结果不为零），则跳转到<code>loc_4011C4</code>标签处执行下一条指令。</p>
+</li>
+<li><p><code>loc_4011C4:</code>：标签，表示代码块的开始。</p>
+</li>
+<li><p><code>E8 58 C3 90 90</code>：<code>call</code>指令，它调用位于地址<code>90D0D531h</code>的函数。<code>E8</code>表示<code>call</code>指令，<code>58 C3 90 90</code>是调用的偏移地址。这个地址是相对于<code>call</code>指令下一条指令的偏移。</p>
+</li>
+</ol>
+<p>这段代码首先进行一个条件判断，然后无论条件如何，都会跳转到 <code>loc_4011C4</code> 处执行下一条指令，即 <code>call</code> 指令。最后，通过 <code>call</code> 指令调用一个地址为 <code>90D0D531h</code> 的函数。</p>
+<h4 id="2-反调试"><a href="#2-反调试" class="headerlink" title="2.反调试"></a>2.反调试</h4><h5 id="请列举出至少三个恶意代码中常见的用于反调试的API函数，并阐述原理。"><a href="#请列举出至少三个恶意代码中常见的用于反调试的API函数，并阐述原理。" class="headerlink" title="请列举出至少三个恶意代码中常见的用于反调试的API函数，并阐述原理。"></a>请列举出至少三个恶意代码中常见的用于反调试的API函数，并阐述原理。</h5><ol>
+<li><strong>IsDebuggerPresent:</strong><ul>
+<li><strong>API函数：</strong> <code>IsDebuggerPresent</code></li>
+<li><strong>原理：</strong> <code>IsDebuggerPresent</code> 函数用于检测当前进程是否正在被调试，它会查询进程环境块（PEB）中的IdDebugged标志，如果进程正在被调试，返回一个非零值；否则，返回 0。恶意代码通常会调用这个函数，如果检测到正在被调试，可能会采取相应的措施，例如修改代码行为或提前退出。</li>
+</ul>
+</li>
+<li><strong>CheckRemoteDebuggerPresent:</strong><ul>
+<li><strong>API函数：</strong> <code>CheckRemoteDebuggerPresent</code></li>
+<li><strong>原理：</strong> 同<code>IsDebuggerPresent</code>函数几乎一致，它用来检测本机器中的一个进程是否运行在调试器中。同时，它也检查PEB结构中的IsDebugged属性。它不仅可以探测进程自身是否被调试，同时可以探测系统其他进程是否被调试。这个函数将一个进程句柄作为参数，检查这个句柄对应的进程是否被调试器附加，同时，<code>CheckRemoteDebuggerPresent</code>也可以通过传递自身进程句柄探测自己是否被调试。如果发现有远程调试器存在，它可能会采取一些反调试的措施。</li>
+</ul>
+</li>
+<li><strong>NtQueryInformationProcess:</strong><ul>
+<li><strong>API函数：</strong> <code>NtQueryInformationProcess</code></li>
+<li><strong>原理：</strong> <code>NtQueryInformationProcess</code> 函数用于获取有关进程的信息。它是Ntdll.dll中一个API，其第一个参数是进程句柄，第二个参数告诉我们它需要提取进程信息的类型。为第二个参数指定特定值并调用该函数，相关信息就会设置到第三个参数。第二个参数是一个枚举类型，其中与反调试有关的成员有<code>ProcessDebugPort(0x7)</code>、<code>ProcessDebugObjectHandle(0x1E)</code>和<code>ProcessDebugFlags(0x1F)</code>。例如将该参数置为<code>ProcessDebugPort</code>，如果进程正在被调试，则返回调试端口，否则返回0。</li>
+</ul>
+</li>
+</ol>
+<h4 id="3-反虚拟机"><a href="#3-反虚拟机" class="headerlink" title="3. 反虚拟机"></a>3. 反虚拟机</h4><h5 id="请列举出至少两种通用的反虚拟机技术（对VMware，VirtualBox等常见虚拟机软件都有效）。"><a href="#请列举出至少两种通用的反虚拟机技术（对VMware，VirtualBox等常见虚拟机软件都有效）。" class="headerlink" title="请列举出至少两种通用的反虚拟机技术（对VMware，VirtualBox等常见虚拟机软件都有效）。"></a>请列举出至少两种通用的反虚拟机技术（对VMware，VirtualBox等常见虚拟机软件都有效）。</h5><ol>
+<li><strong>检测虚拟机痕迹:</strong><ul>
+<li>根据当前进程信息<ul>
+<li>通过进程快照读取当前进程信息，查找是否存在虚拟机中特有的进程，如VMware中的vmware.exe和VirtualBox中的VBoxService.exe。</li>
+</ul>
+</li>
+<li>根据特定的文件夹或文件信息<ul>
+<li>通过查找磁盘中是否存在特定的文件夹或文件，判断当前是否在虚拟机中。VMware虚拟机中通常会有路径C:\Program Files\VMware\VMware Tools\；VirtualBox 虚拟机中通常会有路径 C:\Program  Files\Oracle\VirtualBox Guest Additions\。</li>
+</ul>
+</li>
+<li>根据特定注册表信息<ul>
+<li>通过读取主机具有虚拟机特性的注册表位置来判断是否处于虚拟机环境中。针对VMware可以判断注册表项HKEY_CLASSES_ROOT\Applications\VMwareHostOpen.exe；针对VirtualBox可以判断注册表项HKEY_LOCAL_MACHINE\SOFTWARE\Oracle\VirtualBox<br>Guest Additions。</li>
+</ul>
+</li>
+<li>根据特定服务名<ul>
+<li>通过获取主机当前具有VMware特性的服务信息，判断当前主机是否为虚拟机。在VMware中通常会存在VMware物理磁盘助手服务和VMware Tools服务等；在VirtualBox中通常会存在VirtualBox Guest Additions Service服务等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Red Pill反虚拟机技术:</strong><ul>
+<li>利用中断描述符表IDT基址检测虚拟机</li>
+<li><strong>原理：</strong> 由于只存在一个IDTR，但又存在两个操作系统，即虚拟机系统和真实主机系统。为了防止冲突，虚拟机监控器必须更改虚拟机中的IDT地址，利用真主机与虚拟机环境中执行的sidt指令的差异即可用于检测虚拟机是否存在</li>
+</ul>
+</li>
+</ol>
 
                 
                 <p class="end">__END__</p>
@@ -96,7 +147,7 @@
     <div class="suffix-box-right">
         <span class="suffix-box-title">文章作者：</span>Double
         <br>
-        <span class="suffix-box-title">文章出处：</span><a href="/uncategorized/Hello-World/" target="_blank">Hello World</a>
+        <span class="suffix-box-title">文章出处：</span><a href="/Study/%E6%B1%87%E7%BC%96%E5%8F%8A%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%B8%B8%E8%A7%81%E6%8A%80%E6%9C%AF/" target="_blank">汇编及恶意代码常见技术</a>
         <br>
         <span class="suffix-box-title">作者签名：</span>往事如烟，烟消云散.
         <br>
@@ -108,12 +159,28 @@
     <div style="clear: both;"></div>
 </div>
                 
+                    <div class="category">
+                        分类：
+                        
+                            <a href="/category/Study/">Study</a>
+                        
+                    </div>
+                
+                
+                    <div class="tag">
+                        标签：
+                        
+                            <a href="/tag/%E6%B1%87%E7%BC%96-%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/">汇编 | 恶意代码</a>
+                        
+                    </div>
                 
                 <div class="article-prev-next">
                     
-                        <a href="/Web/LiveForCode/" class="prev-prefix">« </a> 上一篇：    <a href="/Web/LiveForCode/" title="发布于 2023-03-30 12:00">LiveForCode</a>
+                        <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/" class="prev-prefix">« </a> 上一篇：    <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/" title="发布于 2024-01-04 05:12">SDN学习记录1</a>
                         <br>
                     
+                    
+                        <a href="/Study/%E7%BD%91%E5%AE%89%E9%9D%B6%E5%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="next-prefix">» </a> 下一篇：    <a href="/Study/%E7%BD%91%E5%AE%89%E9%9D%B6%E5%9C%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="发布于 2023-06-12 12:48">网安靶场学习记录</a>
                     
                 </div>
             </div>

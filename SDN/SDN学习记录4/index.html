@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            Hello World
+            SDN学习记录4
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -38,26 +38,34 @@
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">Hello World</h1>
+                <h1 class="header-subtitle">SDN学习记录4</h1>
                 <div class="header-subinfo">
                     <p class="article-info-text">
                         <span>
-                            <i class="iconfont icon-time"></i> 发表时间：2023-03-29
+                            <i class="iconfont icon-time"></i> 发表时间：2024-01-13
                         </span>
                         
                             
-                                <span id="/uncategorized/Hello-World/" class="leancloud_visitors" data-flag-title="Hello World">
+                                <span id="/SDN/SDN学习记录4/" class="leancloud_visitors" data-flag-title="SDN学习记录4">
                                     <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
                                 </span>
                             
                             
                                 <span>
-                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/uncategorized/Hello-World/"></span>
+                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/SDN/SDN学习记录4/"></span>
                                 </span>
                               
                         
                     </p>
                     
+                        
+                            <span class="category-color">SDN</span>
+                        
+                    
+                    
+                        
+                            <span class="tag-color">Analyse</span>
+                        
                     
                 </div>
             
@@ -71,19 +79,24 @@
         <div id="article">
             <div class="toc"></div>
             <div class="article-body">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h6 id="数据分析-从非实验环境的流量中完成数据收集和图像绘制"><a href="#数据分析-从非实验环境的流量中完成数据收集和图像绘制" class="headerlink" title="数据分析:从非实验环境的流量中完成数据收集和图像绘制"></a>数据分析:从非实验环境的流量中完成数据收集和图像绘制</h6><p>使用sflow-rt工具的browser-metric组件可以对流量进行图像绘制</p>
+<ul>
+<li>使用user1对printer进行ping操作</li>
+</ul>
+<p><img src="/image/article/SDN4/image-20240105233855540.png" alt="image-20240105233855540"></p>
+<ul>
+<li>使用user3对hardDisk进行ping操作(没有权限)</li>
+</ul>
+<p><img src="/image/article/SDN4/image-20240105233955658.png" alt="image-20240105233955658"></p>
+<ul>
+<li>sflow-rt工具绘制的流量图像，可以看到当user1请求使用printer服务时，因为他有该权限，因此所有交换机上的流表均正常工作，此时数据流正常通行，但是当user3没有权限访问hardDisk，因此只有在s3上的流表工作，过滤掉这个user3发出的数据包。</li>
+</ul>
+<p><img src="/image/article/SDN4/image-20240105234015100.png" alt="image-20240105234015100"></p>
+<p><img src="/image/article/SDN4/image-20240106000127602.png" alt="image-20240106000127602"></p>
+<p>使用tcpdump命令查看s2上通过的数据包，可以所有数据包成功通过</p>
+<p><img src="/image/article/SDN4/image-20240106000429138.png" alt="image-20240106000429138"></p>
+<p>再查看s3的情况，可以看到并没有数据包经s3流出</p>
+<p><img src="/image/article/SDN4/image-20240106000533532.png" alt="image-20240106000533532"></p>
 
                 
                 <p class="end">__END__</p>
@@ -96,7 +109,7 @@
     <div class="suffix-box-right">
         <span class="suffix-box-title">文章作者：</span>Double
         <br>
-        <span class="suffix-box-title">文章出处：</span><a href="/uncategorized/Hello-World/" target="_blank">Hello World</a>
+        <span class="suffix-box-title">文章出处：</span><a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%954/" target="_blank">SDN学习记录4</a>
         <br>
         <span class="suffix-box-title">作者签名：</span>往事如烟，烟消云散.
         <br>
@@ -108,12 +121,25 @@
     <div style="clear: both;"></div>
 </div>
                 
+                    <div class="category">
+                        分类：
+                        
+                            <a href="/category/SDN/">SDN</a>
+                        
+                    </div>
+                
+                
+                    <div class="tag">
+                        标签：
+                        
+                            <a href="/tag/Analyse/">Analyse</a>
+                        
+                    </div>
                 
                 <div class="article-prev-next">
                     
-                        <a href="/Web/LiveForCode/" class="prev-prefix">« </a> 上一篇：    <a href="/Web/LiveForCode/" title="发布于 2023-03-30 12:00">LiveForCode</a>
-                        <br>
                     
+                        <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/" class="next-prefix">» </a> 下一篇：    <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/" title="发布于 2024-01-13 12:00">SDN学习记录5</a>
                     
                 </div>
             </div>

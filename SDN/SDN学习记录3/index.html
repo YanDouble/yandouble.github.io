@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            Hello World
+            SDN学习记录3
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -38,26 +38,34 @@
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">Hello World</h1>
+                <h1 class="header-subtitle">SDN学习记录3</h1>
                 <div class="header-subinfo">
                     <p class="article-info-text">
                         <span>
-                            <i class="iconfont icon-time"></i> 发表时间：2023-03-29
+                            <i class="iconfont icon-time"></i> 发表时间：2024-01-08
                         </span>
                         
                             
-                                <span id="/uncategorized/Hello-World/" class="leancloud_visitors" data-flag-title="Hello World">
+                                <span id="/SDN/SDN学习记录3/" class="leancloud_visitors" data-flag-title="SDN学习记录3">
                                     <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
                                 </span>
                             
                             
                                 <span>
-                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/uncategorized/Hello-World/"></span>
+                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/SDN/SDN学习记录3/"></span>
                                 </span>
                               
                         
                     </p>
                     
+                        
+                            <span class="category-color">SDN</span>
+                        
+                    
+                    
+                        
+                            <span class="tag-color">Programe</span>
+                        
                     
                 </div>
             
@@ -71,19 +79,16 @@
         <div id="article">
             <div class="toc"></div>
             <div class="article-body">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h6 id="根据目标流量正确生成目标规则，并成功下发实现了控制目标"><a href="#根据目标流量正确生成目标规则，并成功下发实现了控制目标" class="headerlink" title="根据目标流量正确生成目标规则，并成功下发实现了控制目标"></a>根据目标流量正确生成目标规则，并成功下发实现了控制目标</h6><p>连接到了数据库，对用户进行身份验证，并提供对应的服务，当用户请求服务的流量到达时，使用控制器向交换机下发对应的流表规则，使得流量能够顺利到达对应的服务，使该用户能够成功使用该服务</p>
+<p>关键代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">getInformation</span>():</span><br><span class="line">    username = <span class="built_in">input</span>(<span class="string">&#x27;Please input your username:\n&#x27;</span>)</span><br><span class="line">    service = <span class="built_in">input</span>(<span class="string">&#x27;Please input your want to use service:\n&#x27;</span>)</span><br><span class="line">    password = getpass.getpass(<span class="string">&quot;Enter your password:\n&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> username, password, service</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">authenticate</span>(<span class="params">username, password,service</span>):</span><br><span class="line">    <span class="comment">#连接数据库并创建游标</span></span><br><span class="line">    conn = sqlite3.connect(<span class="string">&#x27;data.db&#x27;</span>)</span><br><span class="line">    cursor = conn.cursor()</span><br><span class="line">    cursor.execute(<span class="string">&quot;SELECT * FROM users WHERE username = ? and password = ?&quot;</span>,(username, password))</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> cursor.fetchall():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Username Or Password Error.&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Log In Successfully!&quot;</span>)</span><br><span class="line">    cursor.execute(<span class="string">&quot;SELECT * FROM rules WHERE user = ? and service = ?&quot;</span>,(username,service))</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> cursor.fetchall():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;You don&#x27;t have the <span class="subst">&#123;service&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Successfully! You can use the service.&quot;</span>)</span><br><span class="line">    <span class="comment"># 关闭数据库连接</span></span><br><span class="line">    conn.close()</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_flow_table</span>(<span class="params">username, password, service, mac, ip, switch, infer</span>):</span><br><span class="line">    switch_infer = &#123;<span class="string">&#x27;2&#x27;</span>: <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;3&#x27;</span>: <span class="string">&#x27;5&#x27;</span>&#125;</span><br><span class="line">    service_infer = &#123;<span class="string">&#x27;hardDisk&#x27;</span>: <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;printer&#x27;</span>: <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;secret&#x27;</span>: <span class="string">&#x27;3&#x27;</span>&#125;</span><br><span class="line">    service_mac = &#123;<span class="string">&#x27;hardDisk&#x27;</span>: <span class="string">&#x27;2a:b3:a3:0b:e1:46&#x27;</span>, <span class="string">&#x27;printer&#x27;</span>: <span class="string">&#x27;12:82:cc:55:c7:f0&#x27;</span>, <span class="string">&#x27;secret&#x27;</span>: <span class="string">&#x27;16:8b:5b:04:f4:39&#x27;</span>&#125;</span><br><span class="line">    <span class="keyword">if</span> authenticate(username, password, service):</span><br><span class="line">        <span class="comment"># request information</span></span><br><span class="line">        headers = &#123;<span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span>&#125;</span><br><span class="line">        auth = (<span class="string">&quot;admin&quot;</span>, <span class="string">&quot;admin&quot;</span>) </span><br><span class="line">        </span><br><span class="line">        <span class="comment"># flow rule</span></span><br><span class="line">        stp_user_To_ip = &#123;</span><br><span class="line">            <span class="string">&quot;flow&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;id&quot;</span>: <span class="string">f&quot;stp-s<span class="subst">&#123;switch&#125;</span>-<span class="subst">&#123;infer&#125;</span>-1-<span class="subst">&#123;service&#125;</span>-ip-<span class="subst">&#123;username&#125;</span>&quot;</span>,</span><br><span class="line">            <span class="string">&quot;priority&quot;</span>: <span class="number">200</span>,</span><br><span class="line">            <span class="string">&quot;table_id&quot;</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="string">&quot;match&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;ethernet-match&quot;</span>: &#123;<span class="string">&quot;ethernet-type&quot;</span>: &#123;<span class="string">&quot;type&quot;</span>: <span class="number">2048</span>&#125;, <span class="string">&quot;ethernet-source&quot;</span>: &#123;<span class="string">&quot;address&quot;</span>: <span class="string">f&quot;<span class="subst">&#123;mac&#125;</span>&quot;</span>&#125;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;instructions&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;instruction&quot;</span>: [&#123;</span><br><span class="line">                <span class="string">&quot;order&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                <span class="string">&quot;apply-actions&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;action&quot;</span>: [&#123;</span><br><span class="line">                    <span class="string">&quot;order&quot;</span>: <span class="number">0</span>,</span><br><span class="line">                    <span class="string">&quot;output-action&quot;</span>: &#123; <span class="string">&quot;output-node-connector&quot;</span>: <span class="string">f&quot;openflow:<span class="subst">&#123;switch&#125;</span>:1&quot;</span> &#125;</span><br><span class="line">                    &#125;]</span><br><span class="line">                &#125;</span><br><span class="line">                &#125;]</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        json_stp_user_To_ip = json.dumps(stp_user_To_ip)</span><br><span class="line">        url_stp_user_To_ip = <span class="string">f&quot;http://localhost:8181/restconf/config/opendaylight-inventory:nodes/node/openflow:<span class="subst">&#123;switch&#125;</span>/table/0/flow/stp-s<span class="subst">&#123;switch&#125;</span>-<span class="subst">&#123;infer&#125;</span>-1-<span class="subst">&#123;service&#125;</span>-ip-<span class="subst">&#123;username&#125;</span>&quot;</span></span><br><span class="line">        response_stp_user_To_ip = requests.put(url_stp_user_To_ip, headers=headers, auth=auth, data=json_stp_user_To_ip)</span><br><span class="line">        <span class="built_in">print</span>(response_stp_user_To_ip)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>其他流表的下发与给出部分类似</p>
+<hr>
+<p>当user1进行身份验证后，其能成功使用printer服务</p>
+<p><img src="/image/article/SDN3/image-20240105160824235.png" alt="image-20240105160824235"></p>
+<p>而未经身份验证的user2，则不能使用该服务</p>
+<p><img src="/image/article/SDN3/image-20240105160932529.png" alt="image-20240105160932529"></p>
 
                 
                 <p class="end">__END__</p>
@@ -96,7 +101,7 @@
     <div class="suffix-box-right">
         <span class="suffix-box-title">文章作者：</span>Double
         <br>
-        <span class="suffix-box-title">文章出处：</span><a href="/uncategorized/Hello-World/" target="_blank">Hello World</a>
+        <span class="suffix-box-title">文章出处：</span><a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%953/" target="_blank">SDN学习记录3</a>
         <br>
         <span class="suffix-box-title">作者签名：</span>往事如烟，烟消云散.
         <br>
@@ -108,12 +113,28 @@
     <div style="clear: both;"></div>
 </div>
                 
+                    <div class="category">
+                        分类：
+                        
+                            <a href="/category/SDN/">SDN</a>
+                        
+                    </div>
+                
+                
+                    <div class="tag">
+                        标签：
+                        
+                            <a href="/tag/Programe/">Programe</a>
+                        
+                    </div>
                 
                 <div class="article-prev-next">
                     
-                        <a href="/Web/LiveForCode/" class="prev-prefix">« </a> 上一篇：    <a href="/Web/LiveForCode/" title="发布于 2023-03-30 12:00">LiveForCode</a>
+                        <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/" class="prev-prefix">« </a> 上一篇：    <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/" title="发布于 2024-01-13 12:00">SDN学习记录5</a>
                         <br>
                     
+                    
+                        <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/" class="next-prefix">» </a> 下一篇：    <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/" title="发布于 2024-01-05 12:00">SDN学习记录2</a>
                     
                 </div>
             </div>

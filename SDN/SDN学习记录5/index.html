@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <title>
         
-            Hello World
+            SDN学习记录5
         
     </title>
     <link rel="shortcut icon" href="#"/>
@@ -38,26 +38,34 @@
     <div class="vertical">
         <div class="inner">
             
-                <h1 class="header-subtitle">Hello World</h1>
+                <h1 class="header-subtitle">SDN学习记录5</h1>
                 <div class="header-subinfo">
                     <p class="article-info-text">
                         <span>
-                            <i class="iconfont icon-time"></i> 发表时间：2023-03-29
+                            <i class="iconfont icon-time"></i> 发表时间：2024-01-13
                         </span>
                         
                             
-                                <span id="/uncategorized/Hello-World/" class="leancloud_visitors" data-flag-title="Hello World">
+                                <span id="/SDN/SDN学习记录5/" class="leancloud_visitors" data-flag-title="SDN学习记录5">
                                     <i class="iconfont icon-browse"></i> 阅读：<sapn class="leancloud-visitors-count"></span>
                                 </span>
                             
                             
                                 <span>
-                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/uncategorized/Hello-World/"></span>
+                                    <i class="iconfont icon-interactive"></i> 评论：<span class="valine-comment-count" data-xid="/SDN/SDN学习记录5/"></span>
                                 </span>
                               
                         
                     </p>
                     
+                        
+                            <span class="category-color">SDN</span>
+                        
+                    
+                    
+                        
+                            <span class="tag-color">Analyse</span>
+                        
                     
                 </div>
             
@@ -71,19 +79,44 @@
         <div id="article">
             <div class="toc"></div>
             <div class="article-body">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h5 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h5><ul>
+<li><p>Ubuntu22.04 </p>
+</li>
+<li><p>OpenDaylight0.13.4(aluminium)</p>
+</li>
+<li><p>Mininet2.3.0</p>
+</li>
+<li><p>Python3.10.12</p>
+</li>
+</ul>
+<h5 id="安装Mininet"><a href="#安装Mininet" class="headerlink" title="安装Mininet"></a>安装Mininet</h5><p><code>sudo apt -y update</code></p>
+<p><code>sudo apt -y install install mininet</code></p>
+<p><code>sudo apt -y install python3 python3-pip</code></p>
+<p><code>sudo pip3 install mininet</code></p>
+<h5 id="为OpenDaylight安装Feature"><a href="#为OpenDaylight安装Feature" class="headerlink" title="为OpenDaylight安装Feature"></a>为OpenDaylight安装Feature</h5><p><code>bin/start</code></p>
+<p><code>bin/client</code></p>
+<p><code>feature:install odl-openflowplugin-flow-services-rest</code></p>
+<p><code>feature:install odl-openflowplugin-app-topology-manager</code></p>
+<p><code>feature:install odl-openflowplugin-app-forwardingrules-manager</code></p>
+<p><code>feature:install odl-openflowplugin-app-topology-lldp-disovery</code></p>
+<p><code>feature:install odl-openflowplugin-app-lldp-speaker</code></p>
+<p><code>feature:install odl-openflowplugin-app-table-miss-enforcer</code></p>
+<h5 id="启动Mininet"><a href="#启动Mininet" class="headerlink" title="启动Mininet"></a>启动Mininet</h5><p><code>sudo python3 test.py</code>或</p>
+<p><code>sudo mn --custom test.py --topo simple --controller remote,ip=ip</code></p>
+<h5 id="用户进行所需服务的身份认证"><a href="#用户进行所需服务的身份认证" class="headerlink" title="用户进行所需服务的身份认证"></a>用户进行所需服务的身份认证</h5><p><code>sh python3 authfunc.py</code>之后输入用户名密码和需要的服务即可，认证成功后即可成功访问服务</p>
+<p>访问<code>http://&lt;controller_ip&gt;:8181/restconf/operational/opendaylight-inventory:nodes/node/openflow:&lt;switch&gt;/table/0/</code>即可查看下发给对应交换机的流表</p>
+<p><code>curl -X DELETE -u admin:admin http://&lt;controller_ip&gt;:8181/restconf/config/opendaylight-inventory:nodes/</code>可以清除所有下发给交换机的流表规则</p>
+<p><code>&lt;host&gt; ping &lt;service&gt;</code>可以检测用户是否能够成功访问目标服务</p>
+<h5 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h5><p><code>wget https://inmon.com/products/sFlow-RT/sflow-rt.tar.gz</code></p>
+<p><code>tar -xvzf sflow-rt.tar.gz</code></p>
+<p><code>./sflow-rt/get-app.sh sflow-rt browse-metrics</code></p>
+<p><code>./sflow-rt/get-app.sh sflow-rt browse-flows</code></p>
+<p><code>./sflow-rt/start.sh</code></p>
+<p>在启动mininet之后</p>
+<p><code>sudo ovs-vsctl -- --id=@sflow create sFlow agent=&lt;switch&gt; target=\&quot;&lt;ip&gt;:6343\&quot; header=128 sampling=64 polling=1 -- set bridge &lt;switch&gt; sflow=@sflow</code>开启OvS的sFlow功能，并配置sFlow Agent</p>
+<p><code>sudo ovs-vsctl list sflow</code>可以查看已经配置的信息</p>
+<p>访问<code>http://localhost:8008/app/browse-metrics/html/index.html?metric=ovs_dp_flows</code>可以进行流量分析</p>
+<p><code>sudo tcpdump -i &lt;switch-interface&gt;</code>可以分析交换机网络接口数据包信息</p>
 
                 
                 <p class="end">__END__</p>
@@ -96,7 +129,7 @@
     <div class="suffix-box-right">
         <span class="suffix-box-title">文章作者：</span>Double
         <br>
-        <span class="suffix-box-title">文章出处：</span><a href="/uncategorized/Hello-World/" target="_blank">Hello World</a>
+        <span class="suffix-box-title">文章出处：</span><a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/" target="_blank">SDN学习记录5</a>
         <br>
         <span class="suffix-box-title">作者签名：</span>往事如烟，烟消云散.
         <br>
@@ -108,12 +141,28 @@
     <div style="clear: both;"></div>
 </div>
                 
+                    <div class="category">
+                        分类：
+                        
+                            <a href="/category/SDN/">SDN</a>
+                        
+                    </div>
+                
+                
+                    <div class="tag">
+                        标签：
+                        
+                            <a href="/tag/Analyse/">Analyse</a>
+                        
+                    </div>
                 
                 <div class="article-prev-next">
                     
-                        <a href="/Web/LiveForCode/" class="prev-prefix">« </a> 上一篇：    <a href="/Web/LiveForCode/" title="发布于 2023-03-30 12:00">LiveForCode</a>
+                        <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%954/" class="prev-prefix">« </a> 上一篇：    <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%954/" title="发布于 2024-01-13 05:25">SDN学习记录4</a>
                         <br>
                     
+                    
+                        <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%953/" class="next-prefix">» </a> 下一篇：    <a href="/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%953/" title="发布于 2024-01-08 12:00">SDN学习记录3</a>
                     
                 </div>
             </div>

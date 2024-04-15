@@ -6,7 +6,7 @@
   <link href="https://yandouble.github.io/atom.xml" rel="self"/>
   
   <link href="https://yandouble.github.io/"/>
-  <updated>2024-04-15T09:29:07.257Z</updated>
+  <updated>2024-04-15T09:39:55.685Z</updated>
   <id>https://yandouble.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SDN学习记录5</title>
+    <link href="https://yandouble.github.io/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/"/>
+    <id>https://yandouble.github.io/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/</id>
+    <published>2024-01-13T10:40:20.000Z</published>
+    <updated>2024-04-15T09:39:55.685Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h5><ul><li><p>Ubuntu22.04 </p></li><li><p>OpenDaylight0.13.4(aluminium)</p></li><li><p>Mininet2.3.0</p></li><li><p>Python3.10.12</p></li></ul><h5 id="安装Mininet"><a href="#安装Mininet" class="headerlink" title="安装Mininet"></a>安装Mininet</h5><p><code>sudo apt -y update</code></p><p><code>sudo apt -y install install mininet</code></p><p><code>sudo apt -y install python3 python3-pip</code></p><p><code>sudo pip3 install mininet</code></p><h5 id="为OpenDaylight安装Feature"><a href="#为OpenDaylight安装Feature" class="headerlink" title="为OpenDaylight安装Feature"></a>为OpenDaylight安装Feature</h5><p><code>bin/start</code></p><p><code>bin/client</code></p><p><code>feature:install odl-openflowplugin-flow-services-rest</code></p><p><code>feature:install odl-openflowplugin-app-topology-manager</code></p><p><code>feature:install odl-openflowplugin-app-forwardingrules-manager</code></p><p><code>feature:install odl-openflowplugin-app-topology-lldp-disovery</code></p><p><code>feature:install odl-openflowplugin-app-lldp-speaker</code></p><p><code>feature:install odl-openflowplugin-app-table-miss-enforcer</code></p><h5 id="启动Mininet"><a href="#启动Mininet" class="headerlink" title="启动Mininet"></a>启动Mininet</h5><p><code>sudo python3 test.py</code>或</p><p><code>sudo mn --custom test.py --topo simple --controller remote,ip=ip</code></p><h5 id="用户进行所需服务的身份认证"><a href="#用户进行所需服务的身份认证" class="headerlink" title="用户进行所需服务的身份认证"></a>用户进行所需服务的身份认证</h5><p><code>sh python3 authfunc.py</code>之后输入用户名密码和需要的服务即可，认证成功后即可成功访问服务</p><p>访问<code>http://&lt;controller_ip&gt;:8181/restconf/operational/opendaylight-inventory:nodes/node/openflow:&lt;switch&gt;/table/0/</code>即可查看下发给对应交换机的流表</p><p><code>curl -X DELETE -u admin:admin http://&lt;controller_ip&gt;:8181/restconf/config/opendaylight-inventory:nodes/</code>可以清除所有下发给交换机的流表规则</p><p><code>&lt;host&gt; ping &lt;service&gt;</code>可以检测用户是否能够成功访问目标服务</p><h5 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h5><p><code>wget https://inmon.com/products/sFlow-RT/sflow-rt.tar.gz</code></p><p><code>tar -xvzf sflow-rt.tar.gz</code></p><p><code>./sflow-rt/get-app.sh sflow-rt browse-metrics</code></p><p><code>./sflow-rt/get-app.sh sflow-rt browse-flows</code></p><p><code>./sflow-rt/start.sh</code></p><p>在启动mininet之后</p><p><code>sudo ovs-vsctl -- --id=@sflow create sFlow agent=&lt;switch&gt; target=\&quot;&lt;ip&gt;:6343\&quot; header=128 sampling=64 polling=1 -- set bridge &lt;switch&gt; sflow=@sflow</code>开启OvS的sFlow功能，并配置sFlow Agent</p><p><code>sudo ovs-vsctl list sflow</code>可以查看已经配置的信息</p><p>访问<code>http://localhost:8008/app/browse-metrics/html/index.html?metric=ovs_dp_flows</code>可以进行流量分析</p><p><code>sudo tcpdump -i &lt;switch-interface&gt;</code>可以分析交换机网络接口数据包信息</p>]]></content>
+    
+    
+    <summary type="html">基于OpenFlow的网络服务组策略防护---操作指南</summary>
+    
+    
+    
+    <category term="SDN" scheme="https://yandouble.github.io/category/SDN/"/>
+    
+    
+    <category term="Analyse" scheme="https://yandouble.github.io/tag/Analyse/"/>
+    
+  </entry>
   
   <entry>
     <title>SDN学习记录4</title>
@@ -27,27 +48,6 @@
     
     
     <summary type="html">基于OpenFlow的网络服务组策略防护---流量分析</summary>
-    
-    
-    
-    <category term="SDN" scheme="https://yandouble.github.io/category/SDN/"/>
-    
-    
-    <category term="Analyse" scheme="https://yandouble.github.io/tag/Analyse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SDN学习记录5</title>
-    <link href="https://yandouble.github.io/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/"/>
-    <id>https://yandouble.github.io/SDN/SDN%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/</id>
-    <published>2024-01-12T16:00:00.000Z</published>
-    <updated>2024-04-15T09:29:17.622Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="环境："><a href="#环境：" class="headerlink" title="环境："></a>环境：</h5><ul><li><p>Ubuntu22.04 </p></li><li><p>OpenDaylight0.13.4(aluminium)</p></li><li><p>Mininet2.3.0</p></li><li><p>Python3.10.12</p></li></ul><h5 id="安装Mininet"><a href="#安装Mininet" class="headerlink" title="安装Mininet"></a>安装Mininet</h5><p><code>sudo apt -y update</code></p><p><code>sudo apt -y install install mininet</code></p><p><code>sudo apt -y install python3 python3-pip</code></p><p><code>sudo pip3 install mininet</code></p><h5 id="为OpenDaylight安装Feature"><a href="#为OpenDaylight安装Feature" class="headerlink" title="为OpenDaylight安装Feature"></a>为OpenDaylight安装Feature</h5><p><code>bin/start</code></p><p><code>bin/client</code></p><p><code>feature:install odl-openflowplugin-flow-services-rest</code></p><p><code>feature:install odl-openflowplugin-app-topology-manager</code></p><p><code>feature:install odl-openflowplugin-app-forwardingrules-manager</code></p><p><code>feature:install odl-openflowplugin-app-topology-lldp-disovery</code></p><p><code>feature:install odl-openflowplugin-app-lldp-speaker</code></p><p><code>feature:install odl-openflowplugin-app-table-miss-enforcer</code></p><h5 id="启动Mininet"><a href="#启动Mininet" class="headerlink" title="启动Mininet"></a>启动Mininet</h5><p><code>sudo python3 test.py</code>或</p><p><code>sudo mn --custom test.py --topo simple --controller remote,ip=ip</code></p><h5 id="用户进行所需服务的身份认证"><a href="#用户进行所需服务的身份认证" class="headerlink" title="用户进行所需服务的身份认证"></a>用户进行所需服务的身份认证</h5><p><code>sh python3 authfunc.py</code>之后输入用户名密码和需要的服务即可，认证成功后即可成功访问服务</p><p>访问<code>http://&lt;controller_ip&gt;:8181/restconf/operational/opendaylight-inventory:nodes/node/openflow:&lt;switch&gt;/table/0/</code>即可查看下发给对应交换机的流表</p><p><code>curl -X DELETE -u admin:admin http://&lt;controller_ip&gt;:8181/restconf/config/opendaylight-inventory:nodes/</code>可以清除所有下发给交换机的流表规则</p><p><code>&lt;host&gt; ping &lt;service&gt;</code>可以检测用户是否能够成功访问目标服务</p><h5 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h5><p><code>wget https://inmon.com/products/sFlow-RT/sflow-rt.tar.gz</code></p><p><code>tar -xvzf sflow-rt.tar.gz</code></p><p><code>./sflow-rt/get-app.sh sflow-rt browse-metrics</code></p><p><code>./sflow-rt/get-app.sh sflow-rt browse-flows</code></p><p><code>./sflow-rt/start.sh</code></p><p>在启动mininet之后</p><p><code>sudo ovs-vsctl -- --id=@sflow create sFlow agent=&lt;switch&gt; target=\&quot;&lt;ip&gt;:6343\&quot; header=128 sampling=64 polling=1 -- set bridge &lt;switch&gt; sflow=@sflow</code>开启OvS的sFlow功能，并配置sFlow Agent</p><p><code>sudo ovs-vsctl list sflow</code>可以查看已经配置的信息</p><p>访问<code>http://localhost:8008/app/browse-metrics/html/index.html?metric=ovs_dp_flows</code>可以进行流量分析</p><p><code>sudo tcpdump -i &lt;switch-interface&gt;</code>可以分析交换机网络接口数据包信息</p>]]></content>
-    
-    
-    <summary type="html">基于OpenFlow的网络服务组策略防护---操作指南</summary>
     
     
     
